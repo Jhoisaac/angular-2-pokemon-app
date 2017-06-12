@@ -1,0 +1,28 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded  bg-primary">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" [routerLink] ="['personajes']" ><img src="../../../../assets/insignia.png"></a>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink] ="['home']" >Inicio</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink] ="['registro']" >Nuevo Personaje</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink] ="['personajes']">Personajes</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink] ="['about']">acerca de </a>
+      </li>
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Buscar" #buscarTexto (keyup.enter)="buscar(buscarTexto.value)">
+      <button class="btn bt n-outline-secondary my-2 my-sm-0" type="button" (click)="buscar(buscarTexto.value)">Buscar</button>
+    </form>
+  </div>
+</nav>

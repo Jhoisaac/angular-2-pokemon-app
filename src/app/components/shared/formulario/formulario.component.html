@@ -1,0 +1,143 @@
+<div class="container">
+  <h4>Registro Nuevo Personaje <small class="text-center">(POKEMON)</small></h4>
+
+  <hr>
+  <form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate>
+
+    <div>
+
+      <div class="form-group row has-danger" [ngClass]="{'has-danger': ( nombre.errors?.required || nombre.errors?.minLength || nombre.errors?.minLength ) && nombre.touched}">
+        <label class="col-2 col-form-label">Nombre</label>
+        <div class="col-8">
+
+          <input class="form-control"
+                 type="text"
+                 placeholder="Nombre"
+                 required
+                 minlength="3"
+                 name="nombre"
+                 #nombre = "ngModel"
+                 [(ngModel)]="pokemon.nombre">
+          <div *ngIf="nombre.errors?.required" class="form-control-feedback">
+            Este campo es obligatorio
+          </div>
+          <div *ngIf="nombre.errors?.minLength" class="form-control-feedback">
+            El tamaño minimo es de 3 caracteres
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Descripcion</label>
+        <div class="col-8">
+
+          <input class="form-control"
+                 type="text"
+                 placeholder="Descripcion"
+                 name="descripcion"
+                 #descripcion = "ngModel"
+                [(ngModel)]="pokemon.descripcion">
+          <div *ngIf="descripcion.errors?.required" class="form-control-feedback">
+            Este campo es obligatorio
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Numero</label>
+        <div class="col-8">
+
+          <input class="form-control"
+                 type="number"
+                 placeholder="Numero"
+                 name="numero"
+                 #numero = "ngModel"
+                 [(ngModel)]="pokemon.numero">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="tipo" class="col-2 col-form-label">Tipo Pokemon</label>
+        <div class="col-8">
+
+          <select id="tipo" class="form-control" name="tipo" required #tipo="ngModel" [(ngModel)]="pokemon.tipo">
+            <option value="null" disabled selected>Selecciona una opcion</option>
+            <option *ngFor="let tipo of tipos" [value]="tipo" >{{tipo}}</option>
+          </select>
+          <div *ngIf="tipo.errors?.required" class="form-control-feedback">
+            Este campo es obligatorio
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Fecha</label>
+        <!--<input id="myDate" [ngModel]="myDate | date:'y-MM-dd'" (ngModelChange)="myDate = $event" name="birthday">-->
+        <div class="col-8">
+
+          <input class="form-control"
+                 type="date"
+                 placeholder="Fecha"
+                 name="fecha"
+                 #fecha = "ngModel"
+                 [(ngModel)]="pokemon.fecha">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Imagen</label>
+        <div class="col-8">
+
+          <input class="form-control"
+                 type="text"
+                 placeholder="Coloca el nombre de la imagen con su extension"
+                 name="image"
+                 #image = "ngModel"
+                 [(ngModel)]="pokemon.img">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Nombre Evolucion</label>
+        <div class="col-8">
+
+          <input class="form-control"
+                 type="text"
+                 placeholder="Nombre Evolucion"
+                 name="nomEvolucion"
+                 #nomEvolucion = "ngModel"
+                 [(ngModel)]="pokemon.nomEvolucion">
+        </div>
+        <div *ngIf="nomEvolucion.errors?.required" class="form-control-feedback">
+          Este campo es obligatorio
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group row" [ngClass]="{'has-danger': ( evolucion.errors?.required || evolucion.errors?.minLength || evolucion.errors?.pattern ) && evolucion.touched}">
+      <label class="col-2 col-form-label">Evolucion</label>
+      <div class="col-md-8">
+
+        <input class="form-control"
+               placeholder="Coloca el nombre de la imagen con su extension"
+               required
+               name="evolucion"
+               #evolucion = "ngModel"
+               [(ngModel)]="pokemon.evolucion">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">&nbsp;</label>
+      <div class="input-group col-md-8">
+        <button type="submit" class="btn btn-outline-primary" [disabled]="!forma.valid && habilitado">
+          Guardar
+        </button>
+        <!--{{habilitado}}-->
+      </div>
+    </div>
+
+  </form>
+
+</div>
